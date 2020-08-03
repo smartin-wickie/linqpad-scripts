@@ -1,0 +1,21 @@
+<Query Kind="SQL" />
+
+DECLARE @tbl TABLE(
+	SPID INT
+	,Status	NVARCHAR(500)
+	,LOGIN 	NVARCHAR(500)
+	,HostName 	NVARCHAR(500)
+	,BlkBy 	NVARCHAR(500)
+	,DBName		NVARCHAR(500)
+	,Command NVARCHAR(500)
+	,CPUTime int
+	,DiskIO INT
+	,LastBatch  NVARCHAR(500)
+	,ProgramName NVARCHAR(500)
+	,SPID2 INT
+	,REQUESTID NVARCHAR(500)
+	)
+
+INSERT INTO @tbl EXEC sp_who2
+
+SELECT * FROM @tbl WHERE DBName = 'SomeDB' AND HostName = 'MyHost'
